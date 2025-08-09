@@ -32,17 +32,24 @@ DB.connect((err) =>{
 });
 
 
-server.get("/nameed" ,(req, res)=>{
 
-
-   
-});
 
 server.post("/registered",(req,res) =>{
 
     console.log(req.body);
 
-    res.send("your data is recived");
+    let {Fname ,Lname ,phonenumber } =req.body;
+   
+
+  let insert_query=`INSERT INTO users (first_name, last_name, phone_number)
+VALUES (?, ?, ?);`;
+
+DB.query(insert_query, [Fname,Lname, phonenumber] , (err,result,field) => {
+    if (err) console.log(err);
+    else console.log(result);
+});
+
+    res.send("your data is received and saved on database");
 
 
 
