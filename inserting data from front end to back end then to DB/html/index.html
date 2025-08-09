@@ -6,10 +6,12 @@
     <title>insert data to data base</title>
 </head>
 <body>
+    
 
-    <form action="http://localhost:3000/registered" method="post">
+
+    <form id="create_form" >
         <label for="firstName">First Name:
-            <input type="text" id="firstNameid" name="Fname">
+            <input type="text" id="firstNameid" name="Fname" >
         </label><br><br>
         <label for="lastName">Last Name:
             <input type="text" id="lastNameid" name="Lname">
@@ -21,6 +23,12 @@
         <button type="submit">submit</button>
 
     </form>
+
     
+
+    <div>
+        <script src="jquery-3_7_1.js"></script>
+        <script src="script.js"></script>
+    </div>
 </body>
 </html>

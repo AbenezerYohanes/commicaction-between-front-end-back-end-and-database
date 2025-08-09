@@ -1,18 +1,22 @@
 let express=require("express");
 let mysql=require("mysql2");
+let cors=require("cors")
 
 
 
 let server=express();
 
-
+server.use(cors());
 server.use(express.static("html"));
+
+
 
 server.use(
     express.urlencoded({
         extended:true
     })
 );
+server.use(express.json());
 
 let DB=mysql.createConnection({
 
@@ -38,13 +42,14 @@ server.post("/registered",(req,res) =>{
 
     console.log(req.body);
 
-    let {Fname ,Lname ,phonenumber } =req.body;
+    let { first_name, last_name, phone_number } = req.body;
    
 
   let insert_query=`INSERT INTO users (first_name, last_name, phone_number)
 VALUES (?, ?, ?);`;
 
-DB.query(insert_query, [Fname,Lname, phonenumber] , (err,result,field) => {
+
+DB.query(insert_query, [first_name, last_name, phone_number] , (err,result,field) => {
     if (err) console.log(err);
     else console.log(result);
 });
